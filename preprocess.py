@@ -4,10 +4,10 @@ import time
 import networkx as nx
 import pickle
 
-json_root = os.path.join("reddit_reply_networks", "reply_networks")
+json_root = "reply_networks"
 json_files = [os.path.join(json_root, f) for f in os.listdir(json_root)]
 
-FILENAME = "politics"
+FILENAME = "haskell"
 combined_edges = []
 
 print("Starting to process dictionaries and gather edges...")
@@ -38,7 +38,7 @@ print(f"Time taken for NetworkX graph creation: {graph_creation_time:.4f} second
 print(f"Number of nodes in the graph: {graph.number_of_nodes()}")
 print(f"Number of edges in the graph: {graph.number_of_edges()}")
 graph = graph.to_undirected()
-pos = nx.spring_layout(graph, seed=42)
+pos = nx.spring_layout(graph, k=0.7, seed=42)
 graph.remove_edges_from(nx.selfloop_edges(graph))
 degree_sequence = sorted([d for n, d in graph.degree()], reverse=True)
 average_degree = sum(degree_sequence) / len(degree_sequence) if degree_sequence else 0

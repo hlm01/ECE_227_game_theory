@@ -1,3 +1,5 @@
 /reddit_reply_networks
 /.DS_Store
 /__pycache__
+/reply_networks
+*.gexf

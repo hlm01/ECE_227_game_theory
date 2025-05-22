@@ -78,13 +78,11 @@ class Game:
         )
         plt.show()
 
-    def play_iter(self, iterations, viz=False, plot=False):
+    def play_iter(self, iterations, plot=False):
         counters = []
         for i in tqdm.trange(iterations):
             counters.append(self.play_network())
             self.update_strategy()
-            if viz:
-                self.visualize_graph()
         if plot:
             action1, action2 = list(self.payoff_matrix.keys())
             total_nodes = len(self.graph.nodes())
@@ -105,5 +103,4 @@ class Game:
 
             plt.legend()
             plt.show()
-        self.visualize_graph()
         return counters
